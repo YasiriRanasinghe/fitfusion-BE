@@ -94,6 +94,20 @@ const deleteWorkout = async (req, res) => {
   }
 };
 
+// GET WORKOUTS BY TITLE 
+
+const getWorkoutsByTitle = async (req, res) => {
+  try {
+    const { title } = req.params;
+    const workouts = await Workout.find({ titles: title });
+
+    res.json(workouts);
+  } catch (error) {
+    res.status(500).json({ error: "An error occurred while retrieving the workouts" });
+  }
+};
+
+
 //   module.exports = deleteWorkout;
 
 module.exports = {
@@ -102,4 +116,5 @@ module.exports = {
   getWorkoutById,
   updateWorkout,
   deleteWorkout,
+  getWorkoutsByTitle,
 };
